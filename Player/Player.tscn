@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://Player/silohuete.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://gdscripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://Player/spear spin spritesheet.png" type="Texture" id=6]
+[ext_resource path="res://Player/bow spritesheet.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 38.25, 28.5 )
@@ -50,7 +51,37 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="Animation" id=21]
+resource_name = "Charge"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "Reset"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
@@ -176,6 +207,8 @@ tracks/5/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="RectangleShape2D" id=7]
+
 [sub_resource type="CircleShape2D" id=9]
 radius = 114.355
 
@@ -189,6 +222,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Cursor" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
@@ -215,14 +249,13 @@ disabled = true
 playback_speed = 3.0
 "anims/Sword Anim" = SubResource( 20 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-script = ExtResource( 4 )
+[node name="Bow" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+hframes = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -16, 3 )
-scale = Vector2( 3, 4.5 )
-shape = SubResource( 7 )
+[node name="Bow Anim" type="AnimationPlayer" parent="Bow"]
+anims/Charge = SubResource( 21 )
+anims/Reset = SubResource( 22 )
 
 [node name="Spear" type="AnimatedSprite" parent="."]
 visible = false
@@ -245,6 +278,15 @@ position = Vector2( -1.2, -1.2 )
 rotation = 5.60652
 polygon = PoolVector2Array( 29.2, 5.6, 44.4, 16.4, 48.4, -2.4, 41.6, -25.6, 24, -42, 5.6, -48.4, -1.2, -48.4, -1.6, -26, 10.4, -22.8, 21.2, -16.4, 26.4, -8.8, 27.6, -2.4 )
 disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -16, 3 )
+scale = Vector2( 3, 4.5 )
+shape = SubResource( 7 )
 
 [node name="Stunned Attack" type="Area2D" parent="."]
 scale = Vector2( 1.5, 1.5 )
