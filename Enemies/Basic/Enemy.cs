@@ -10,7 +10,6 @@ public class Enemy : KinematicBody2D
     int max_health = 100;
     int health;
     int KnockbackDistance = 2000;
-    Timer VarTim;
 
     [Signal]
     public delegate void ScoreUpdate(int score);
@@ -20,8 +19,6 @@ public class Enemy : KinematicBody2D
     public override void _Ready()
     {
         health = max_health;
-
-        VarTim = GetNode<Timer>("VarTim");
 
         Player = GetParent().GetNode<KinematicBody2D>("Player");
         HUD = GetParent().GetNode<Control>("CanvasLayer/HUD");

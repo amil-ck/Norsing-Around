@@ -1,0 +1,54 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Amil\\Downloads\\Godot\\Norsin' Around - C#\\Norsin' Around.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Amil\\Downloads\\Godot\\Norsin' Around - C#\\Norsin' Around.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Amil\\Downloads\\Godot\\Norsin' Around - C#\\Norsin' Around.csproj",
+        "projectName": "Norsin' Around",
+        "projectPath": "C:\\Users\\Amil\\Downloads\\Godot\\Norsin' Around - C#\\Norsin' Around.csproj",
+        "packagesPath": "C:\\Users\\Amil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Amil\\Downloads\\Godot\\Norsin' Around - C#\\.mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Users\\Amil\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Amil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Amil\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

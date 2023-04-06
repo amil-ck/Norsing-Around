@@ -45,6 +45,5 @@ public class Blast : KinematicBody2D
         {
             Body.Call("update_health", -50);
         }
-        QueueFree();
     }
 }

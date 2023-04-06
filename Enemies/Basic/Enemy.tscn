@@ -21,6 +21,4 @@ shape = SubResource( 1 )
 wait_time = 3.0
 autostart = true
 
-[node name="VarTim" type="Timer" parent="."]
-
 [connection signal="timeout" from="Cooldown" to="." method="OnCooldownTimeout"]

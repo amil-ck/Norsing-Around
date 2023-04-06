@@ -1,0 +1,9 @@
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\bin\Debug\Norsin' Around.dll
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\bin\Debug\Norsin' Around.pdb
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.csproj.AssemblyReference.cache
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.AssemblyInfoInputs.cache
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.AssemblyInfo.cs
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.csproj.CoreCompileInputs.cache
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.dll
+C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.pdb

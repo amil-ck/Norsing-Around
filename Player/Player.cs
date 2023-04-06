@@ -4,38 +4,27 @@ using System;
 public class Player : KinematicBody2D
 {
     //////////////////////////////// Variables ////////////////////////////////
-    float speed = 400;
-    float DashSpeed = 50000;
+    float speed = 200;
+    float dash_distance = 10000;
     bool controller = false;
     Vector2 facing;
     PackedScene WIND;
-    PackedScene ARROW;
-    bool Dashing = false;
-    Vector2 DashVelocity;
-    float DashTime = 0.3f;
 
 /////////////////////////////////////////////////// Built in Functions /////////////////////////////////////////////////
     public override void _Ready()
     {
         WIND = GD.Load<PackedScene>("res://Player/Wind/Wind.tscn");
-        ARROW = GD.Load<PackedScene>("res://Player/Arrow/Arrow.tscn");
     }
 
     public override void _Process(float delta)
     {
-        if (Dashing)
-        {
-            DashFrame(DashVelocity);
-            return;
-        }
-
         Vector2 velocity = calculate_velocity();
         MoveAndSlide(velocity);
     }
 
     public override void _Input(InputEvent @event)
     {
-        BowController();
+        base._Input(@event); //gotta figure out what this means lol
 
         if (Input.IsActionJustPressed("attack"))
         {
@@ -47,44 +36,13 @@ public class Player : KinematicBody2D
             special();
         }
 
-        if (Input.IsActionJustPressed("dash") && !Dashing)
+        if (Input.IsActionJustPressed("dash"))
         {
             dash();
         }
     }
 
 ////////////////////////////////////////// My Functions //////////////////////////////////////////
-
-    public void CheckController()
-    {
-        
-    }
-
-    public void BowController()
-    {
-        Vector2 BowPosition = (GetGlobalMousePosition() - Position).Normalized() * 100;
-        Sprite BowSprite = GetNode<Sprite>("Bow");
-        BowSprite.Position = BowPosition;
-        BowSprite.Rotation = GetAngleTo(GetGlobalMousePosition()) + Mathf.Pi / 2;
-
-        if (Input.IsActionPressed("attack"))
-        {
-            if (BowSprite.Frame == 0)
-            {
-                GetNode<AnimationPlayer>("Bow/Bow Anim").Play("Charge");
-            }
-        }
-        
-        if (Input.IsActionJustReleased("attack"))
-        {
-            GetNode<AnimationPlayer>("Bow/Bow Anim").Play("Reset");
-            KinematicBody2D Arrow = ARROW.Instance<KinematicBody2D>();
-            Arrow.Set("start_point", BowSprite.GlobalPosition);
-            Arrow.Set("end_point", GetGlobalMousePosition());
-            GetParent().AddChild(Arrow);
-        }
-
-    }
 
     public Vector2 get_direction()
     {
@@ -140,26 +98,16 @@ public class Player : KinematicBody2D
             }
         }
     
-    public async void dash()
+    public void dash()
     {
         Vector2 direction = get_direction();
-        DashVelocity = direction * DashSpeed;
+        Vector2 dash_change = direction * dash_distance;
         
-        Dashing = true;
+        Vector2 StartPoint = Position;
+        MoveAndSlide(dash_change);
+        Vector2 EndPoint = Position;
 
-        Vector2 pos1 = Position;
-
-        GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
-
-        await ToSignal(GetTree().CreateTimer(DashTime), "timeout");
-
-        GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
-
-        Vector2 pos2 = Position;
-
-        MakeWind(pos1, pos2);
-
-        Dashing = false;
+        MakeWind(StartPoint, EndPoint);
     }
 
     public void MakeWind(Vector2 StartPoint, Vector2 EndPoint)
@@ -170,11 +118,6 @@ public class Player : KinematicBody2D
         Wind.Set("end_point", EndPoint);
 
         GetParent().AddChild(Wind);
-    }
-
-    public void DashFrame(Vector2 DashVelocity)
-    {
-        MoveAndSlide(DashVelocity * GetProcessDeltaTime());
     }
 
 ///////////////////////////////////////////// Signals //////////////////////////////////////////////////////

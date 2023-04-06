@@ -10,7 +10,6 @@ public class Melee_Enemy : KinematicBody2D
     int health;
     int KnockbackDistance = 2000;
     bool stunned = false;
-    Timer VarTim;
 
     [Signal]
     public delegate void ScoreUpdate(int score);
@@ -20,8 +19,6 @@ public class Melee_Enemy : KinematicBody2D
     public override void _Ready()
     {
         health = max_health;
-
-        VarTim = GetNode<Timer>("VarTim");
 
         Player = GetParent().GetNode<KinematicBody2D>("Player");
         HUD = GetParent().GetNode<Control>("CanvasLayer/HUD");
@@ -75,7 +72,7 @@ public class Melee_Enemy : KinematicBody2D
         GetNode<Sprite>("Sprite").Modulate = new Color("f31919");
         stunned = true;
 
-        VarTim.Start(3); await ToSignal(VarTim, "timeout");
+        await ToSignal(GetTree().CreateTimer(3), "timeout");
 
         SetProcess(true);
         GetNode<Sprite>("Sprite").Modulate = new Color("3af063");
