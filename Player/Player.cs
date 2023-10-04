@@ -22,6 +22,7 @@ public class Player : KinematicBody2D
 	string CurrentElement = "Fire";
 	int MaxHealth = 100;
 	int Health;
+	AnimatedSprite Anim;
 
 	Sprite Bow;
 	Node2D Gauntlets;
@@ -34,6 +35,8 @@ public class Player : KinematicBody2D
 
 		Bow = GetNode<Sprite>("Bow");
 		Gauntlets = GetNode<Node2D>("Gauntlets");
+
+		Anim = GetNode<AnimatedSprite>("AnimatedSprite");
 	}
 
 	public override void _Process(float delta)
@@ -46,6 +49,20 @@ public class Player : KinematicBody2D
 			velocity = calculate_velocity();
 		}
 
+		if (velocity.Length() != 0 && !Anim.Playing) {
+			Anim.Play();
+		} else if (velocity.Length() == 0 && Anim.Playing) {
+			Anim.Stop();
+		}
+
+		if (velocity.x > 0 && Anim.FlipH) {
+			Anim.FlipH = false;
+		} else if (velocity.x < 0 && !Anim.FlipH) {
+			Anim.FlipH = true;
+		}
+		
+		
+		
 		MoveAndSlide(velocity);
 	}
 	
