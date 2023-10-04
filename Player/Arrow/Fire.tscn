@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://light.webp" type="Texture" id=1]
+[ext_resource path="res://Player/Arrow/Fire.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Fire" type="Light2D"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+color = Color( 0.992157, 0.0470588, 0.0470588, 1 )
+energy = 3.0
+shadow_enabled = true
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2( 12.5, 12.5 )
+shape = SubResource( 1 )

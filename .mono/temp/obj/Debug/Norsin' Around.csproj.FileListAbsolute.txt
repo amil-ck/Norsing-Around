@@ -7,3 +7,21 @@ C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' A
 C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.csproj.CoreCompileInputs.cache
 C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.dll
 C:\Users\Amil\Downloads\Godot\Norsin' Around - C#\.mono\temp\obj\Debug\Norsin' Around.pdb
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\bin\Debug\Norsin' Around.dll
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\bin\Debug\Norsin' Around.pdb
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.csproj.AssemblyReference.cache
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.AssemblyInfoInputs.cache
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.AssemblyInfo.cs
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.csproj.CoreCompileInputs.cache
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.dll
+C:\Users\Amil\Documents\GitHub\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.pdb
+C:\Amil\Godot\Norsing-Around\.mono\temp\bin\Debug\Norsin' Around.dll
+C:\Amil\Godot\Norsing-Around\.mono\temp\bin\Debug\Norsin' Around.pdb
+C:\Amil\Godot\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.csproj.AssemblyReference.cache
+C:\Amil\Godot\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.GeneratedMSBuildEditorConfig.editorconfig
+C:\Amil\Godot\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.AssemblyInfoInputs.cache
+C:\Amil\Godot\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.AssemblyInfo.cs
+C:\Amil\Godot\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.csproj.CoreCompileInputs.cache
+C:\Amil\Godot\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.dll
+C:\Amil\Godot\Norsing-Around\.mono\temp\obj\Debug\Norsin' Around.pdb

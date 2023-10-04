@@ -10,6 +10,7 @@ public class Enemy : KinematicBody2D
     int max_health = 100;
     int health;
     int KnockbackDistance = 2000;
+    Timer VarTim;
 
     [Signal]
     public delegate void ScoreUpdate(int score);
@@ -20,6 +21,8 @@ public class Enemy : KinematicBody2D
     {
         health = max_health;
 
+        VarTim = GetNode<Timer>("VarTim");
+
         Player = GetParent().GetNode<KinematicBody2D>("Player");
         HUD = GetParent().GetNode<Control>("CanvasLayer/HUD");
 
@@ -29,8 +32,10 @@ public class Enemy : KinematicBody2D
     }
     public override void _Process(float delta)
     {
-        Vector2 Velocity = CalculateVelocity();
-        MoveAndSlide(Velocity);
+        if (GetPlayerDistance() > 500) {
+            Vector2 Velocity = CalculateVelocity();
+            MoveAndSlide(Velocity);
+        }
     }
 
     //////////////////////////// Functions ///////////////////////////////////
@@ -41,6 +46,12 @@ public class Enemy : KinematicBody2D
         return ToPlayer;
     }
 
+    public float GetPlayerDistance()
+    {
+        float Distance = (Player.Position - Position).Length();
+        return Distance;
+    }
+
     public Vector2 CalculateVelocity()
     {
         Vector2 Direction = GetToPlayer();
@@ -49,10 +60,10 @@ public class Enemy : KinematicBody2D
         return Velocity;
     }
 
-    public void update_health(int change)
+    public void UpdateHealth(int change)
     {
         health += change;
-        knockback();
+        Knockback();
 
         if (health <= 0)
         {
@@ -61,7 +72,7 @@ public class Enemy : KinematicBody2D
         }
     }
 
-    public void knockback()
+    public void Knockback()
     {
         Vector2 Direction = -1 * GetToPlayer();
         Vector2 Velocity = Direction * KnockbackDistance;

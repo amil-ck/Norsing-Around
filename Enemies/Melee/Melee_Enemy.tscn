@@ -1,32 +1,37 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Enemies/Melee/Melee_Enemy.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/Melee/Enemy Slice spritesheet.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 96, 96 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 96, 0, 96, 96 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 192, 0, 96, 96 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 288, 0, 96, 96 )
 
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 384, 0, 96, 96 )
+
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -39,7 +44,6 @@ extents = Vector2( 28.5, 25 )
 
 [sub_resource type="Animation" id=8]
 resource_name = "Melee"
-length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:playing")
 tracks/0/interp = 1
@@ -47,7 +51,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -71,7 +75,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -83,7 +87,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -112,7 +116,7 @@ modulate = Color( 0.227451, 0.941176, 0.388235, 1 )
 texture = ExtResource( 2 )
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 1.5
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -122,6 +126,7 @@ shape = SubResource( 6 )
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/Melee = SubResource( 8 )
 
-[connection signal="area_entered" from="AnimatedSprite/Area2D" to="." method="OnArea2DAreaEntered"]
+[node name="VarTim" type="Timer" parent="."]
+
 [connection signal="body_entered" from="AnimatedSprite/Area2D" to="." method="OnArea2DBodyEntered"]
 [connection signal="timeout" from="Cooldown" to="." method="OnCooldownTimeout"]

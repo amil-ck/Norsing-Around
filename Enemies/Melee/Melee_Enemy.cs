@@ -5,20 +5,26 @@ public class Melee_Enemy : KinematicBody2D
 {
     KinematicBody2D Player;
     Control HUD;
-    float speed = 100;
+    float speed = 300;
     int max_health = 100;
     int health;
     int KnockbackDistance = 2000;
     bool stunned = false;
+    Timer VarTim;
 
     [Signal]
     public delegate void ScoreUpdate(int score);
+
+    [Signal]
+    public delegate void StunnedPointer(bool add, Vector2 direction);
 
 //////////////////////////////////////////// Main //////////////////////////////
 
     public override void _Ready()
     {
         health = max_health;
+
+        VarTim = GetNode<Timer>("VarTim");
 
         Player = GetParent().GetNode<KinematicBody2D>("Player");
         HUD = GetParent().GetNode<Control>("CanvasLayer/HUD");
@@ -27,8 +33,11 @@ public class Melee_Enemy : KinematicBody2D
     }
     public override void _Process(float delta)
     {
-        Vector2 Velocity = CalculateVelocity();
-        MoveAndSlide(Velocity);
+        if (!stunned)
+        {
+            Vector2 Velocity = CalculateVelocity();
+            MoveAndSlide(Velocity);
+        }
     }
 
 /////////////////////////////////////////// Functions //////////////////////////////////////////////
@@ -46,10 +55,10 @@ public class Melee_Enemy : KinematicBody2D
         return Velocity;
     }
 
-    public void update_health(int change)
+    public void UpdateHealth(int change)
     {
         health += change;
-        knockback();
+        Knockback();
 
         if (health <= 0)
         {
@@ -58,7 +67,7 @@ public class Melee_Enemy : KinematicBody2D
         }
     }
 
-    public void knockback()
+    public void Knockback()
     {
         Vector2 Direction = -1 * GetToPlayer();
         Vector2 Velocity = Direction * KnockbackDistance;
@@ -66,29 +75,24 @@ public class Melee_Enemy : KinematicBody2D
         MoveAndSlide(Velocity);
     }
 
-    public async void stun()
+    public async void Stun()
     {
-        SetProcess(false);
         GetNode<Sprite>("Sprite").Modulate = new Color("f31919");
         stunned = true;
 
-        await ToSignal(GetTree().CreateTimer(3), "timeout");
+        VarTim.Start(3); await ToSignal(VarTim, "timeout");
 
-        SetProcess(true);
         GetNode<Sprite>("Sprite").Modulate = new Color("3af063");
         stunned = false;       
     }
 
     ////////////////////////////// Signals /////////////////////////////////////
-    
-    public void OnArea2DAreaEntered(Area2D Area)
-    {
-        stun();
-    }
 
     public void OnArea2DBodyEntered(KinematicBody2D Body)
     {
-        
+        if (Body.HasMethod("UpdateHealth")) {
+            Body.Call("UpdateHealth", -50);
+        }
     }
 
     public void OnCooldownTimeout()

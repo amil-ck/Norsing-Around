@@ -41,9 +41,10 @@ public class Blast : KinematicBody2D
 
     public void OnArea2DBodyEntered(KinematicBody2D Body)
     {
-        if (Body.HasMethod("update_health"))
+        if (Body.HasMethod("UpdateHealth"))
         {
-            Body.Call("update_health", -50);
+            Body.Call("UpdateHealth", -50);
         }
+        QueueFree();
     }
 }

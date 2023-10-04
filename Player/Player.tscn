@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://Player/silohuete.png" type="Texture" id=2]
@@ -6,6 +6,310 @@
 [ext_resource path="res://gdscripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://Player/spear spin spritesheet.png" type="Texture" id=6]
+[ext_resource path="res://Player/bow spritesheet.png" type="Texture" id=7]
+[ext_resource path="res://spritesheet.png" type="Texture" id=8]
+[ext_resource path="res://hand.png" type="Texture" id=9]
+[ext_resource path="res://Player/Fire.png" type="Texture" id=10]
+[ext_resource path="res://Player/Bow.cs" type="Script" id=11]
+[ext_resource path="res://Player/Gauntlets.cs" type="Script" id=12]
+[ext_resource path="res://Player/SwordSpear.cs" type="Script" id=13]
+
+[sub_resource type="Animation" id=21]
+resource_name = "Charge"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 0 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "Ice Charge"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("IceField/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, 7 ), Vector2( 20, 20 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("IceField/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("IceField/CollisionShape2D/Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="CircleShape2D" id=29]
+
+[sub_resource type="RectangleShape2D" id=7]
+
+[sub_resource type="Animation" id=25]
+resource_name = "Attack"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GauntletArea/Right:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GauntletArea/Right:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2, 2.3, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.83783, -0.385965 ), Vector2( 13.6216, -39.3684 ), Vector2( 13.6216, -39.3684 ), Vector2( 9.83783, -0.385965 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GauntletArea/Left:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GauntletArea/Left:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -10.973, -0.77193 ), Vector2( -15.8919, -39.7544 ), Vector2( -15.8919, -39.7544 ), Vector2( -10.973, -0.77193 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("GauntletArea/Right:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2, 2.3, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 3, 3 ), Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("GauntletArea/Left:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.3, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 3, 3 ), Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("GauntletArea/Right/Right2:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 2.3, 2.4, 2.7, 2.9, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 3, 4, 5 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("GauntletArea/Left/Left2:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.3, 0.5, 0.8, 1, 1.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("GauntletArea/Right/Right2:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 2.3, 3.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("GauntletArea/Left/Left2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.3, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("GauntletArea/Right/Hand_R:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.3, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("GauntletArea/Left/Hand_L:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 2.2, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="CircleShape2D" id=23]
+
+[sub_resource type="CircleShape2D" id=24]
+
+[sub_resource type="OccluderPolygon2D" id=28]
+polygon = PoolVector2Array( -20.054, -9.64912, 17.7838, -9.64912, 17.7838, 7.7193, -19.6757, 7.7193 )
+
+[sub_resource type="Animation" id=26]
+resource_name = "Dash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:Dashing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:Dashing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 38.25, 28.5 )
@@ -49,8 +353,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false, true ]
 }
-
-[sub_resource type="RectangleShape2D" id=7]
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
@@ -100,7 +402,10 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=32]
+length = 0.001
+
+[sub_resource type="Animation" id=31]
 resource_name = "Spear Anim"
 step = 0.125
 tracks/0/type = "value"
@@ -189,34 +494,36 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Cursor" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
-[node name="Sword" type="Sprite" parent="."]
+[node name="Bow" type="Sprite" parent="."]
 visible = false
-position = Vector2( 60, -2 )
-scale = Vector2( 1.64063, 1.5 )
-texture = ExtResource( 3 )
-hframes = 5
-frame = 4
+texture = ExtResource( 7 )
+hframes = 6
+script = ExtResource( 11 )
 
-[node name="Sword Area" type="Area2D" parent="Sword"]
-position = Vector2( -36.5713, 1.33333 )
-scale = Vector2( 0.609522, 0.666667 )
-collision_layer = 4
+[node name="Bow Anim" type="AnimationPlayer" parent="Bow"]
+anims/Charge = SubResource( 21 )
+"anims/Ice Charge" = SubResource( 30 )
+anims/Reset = SubResource( 22 )
+
+[node name="IceField" type="Area2D" parent="Bow"]
+collision_layer = 0
 collision_mask = 18
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Sword Area"]
-position = Vector2( 73.75, -2.5 )
-shape = SubResource( 8 )
-disabled = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bow/IceField"]
+scale = Vector2( 7, 7 )
+shape = SubResource( 29 )
 
-[node name="Sword Anim" type="AnimationPlayer" parent="Sword"]
-playback_speed = 3.0
-"anims/Sword Anim" = SubResource( 20 )
+[node name="Sprite" type="Sprite" parent="Bow/IceField/CollisionShape2D"]
+visible = false
+texture = ExtResource( 10 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 4, 4 )
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -224,36 +531,119 @@ position = Vector2( -16, 3 )
 scale = Vector2( 3, 4.5 )
 shape = SubResource( 7 )
 
-[node name="Spear" type="AnimatedSprite" parent="."]
+[node name="Gauntlets" type="Node2D" parent="."]
+visible = false
+scale = Vector2( 2.64286, 2.59091 )
+script = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gauntlets"]
+playback_speed = 5.0
+anims/Attack = SubResource( 25 )
+
+[node name="GauntletArea" type="Area2D" parent="Gauntlets"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Right" type="CollisionShape2D" parent="Gauntlets/GauntletArea"]
+position = Vector2( 9.83783, -0.385965 )
+shape = SubResource( 23 )
+disabled = true
+
+[node name="Hand_R" type="Sprite" parent="Gauntlets/GauntletArea/Right"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+flip_h = true
+
+[node name="Right2" type="Sprite" parent="Gauntlets/GauntletArea/Right"]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 8 )
+hframes = 6
+frame = 5
+
+[node name="Left" type="CollisionShape2D" parent="Gauntlets/GauntletArea"]
+position = Vector2( -10.973, -0.77193 )
+shape = SubResource( 24 )
+disabled = true
+
+[node name="Hand_L" type="Sprite" parent="Gauntlets/GauntletArea/Left"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
+[node name="Left2" type="Sprite" parent="Gauntlets/GauntletArea/Left"]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 8 )
+hframes = 6
+frame = 5
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Gauntlets"]
+occluder = SubResource( 28 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Dash = SubResource( 26 )
+anims/RESET = SubResource( 27 )
+
+[node name="SwordSpear" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Sword" type="Sprite" parent="SwordSpear"]
+visible = false
+position = Vector2( 60, -2 )
+scale = Vector2( 1.64063, 1.5 )
+texture = ExtResource( 3 )
+hframes = 5
+frame = 4
+
+[node name="Sword Area" type="Area2D" parent="SwordSpear/Sword"]
+position = Vector2( -36.5713, 1.33333 )
+scale = Vector2( 0.609522, 0.666667 )
+collision_layer = 4
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSpear/Sword/Sword Area"]
+position = Vector2( 73.75, -2.5 )
+shape = SubResource( 8 )
+disabled = true
+
+[node name="Sword Anim" type="AnimationPlayer" parent="SwordSpear/Sword"]
+playback_speed = 3.0
+"anims/Sword Anim" = SubResource( 20 )
+
+[node name="Spear" type="AnimatedSprite" parent="SwordSpear"]
 visible = false
 position = Vector2( -9.53674e-07, 2 )
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 18 )
 speed_scale = 2.0
 
-[node name="Spear Anim" type="AnimationPlayer" parent="Spear"]
+[node name="Spear Anim" type="AnimationPlayer" parent="SwordSpear/Spear"]
 root_node = NodePath("../..")
 playback_speed = 2.0
-"anims/Spear Anim" = SubResource( 19 )
+anims/RESET = SubResource( 32 )
+"anims/Spear Anim" = SubResource( 31 )
 
-[node name="Spear Area" type="Area2D" parent="Spear"]
+[node name="Spear Area" type="Area2D" parent="SwordSpear/Spear"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spear/Spear Area"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwordSpear/Spear/Spear Area"]
 position = Vector2( -1.2, -1.2 )
 rotation = 5.60652
 polygon = PoolVector2Array( 29.2, 5.6, 44.4, 16.4, 48.4, -2.4, 41.6, -25.6, 24, -42, 5.6, -48.4, -1.2, -48.4, -1.6, -26, 10.4, -22.8, 21.2, -16.4, 26.4, -8.8, 27.6, -2.4 )
 disabled = true
 
-[node name="Stunned Attack" type="Area2D" parent="."]
+[node name="Stunned Attack" type="Area2D" parent="SwordSpear"]
+visible = false
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 0
 collision_mask = 2
 
-[node name="StunSpecialHitbox" type="CollisionShape2D" parent="Stunned Attack"]
+[node name="StunSpecialHitbox" type="CollisionShape2D" parent="SwordSpear/Stunned Attack"]
 shape = SubResource( 9 )
 
-[connection signal="area_entered" from="Sword/Sword Area" to="." method="OnSwordAreaAreaEntered"]
-[connection signal="body_entered" from="Sword/Sword Area" to="." method="OnSwordAreaBodyEntered"]
-[connection signal="body_entered" from="Spear/Spear Area" to="." method="OnSpearAreaBodyEntered"]
+[connection signal="body_entered" from="Bow/IceField" to="." method="OnIceFieldBodyEntered"]
+[connection signal="body_entered" from="Gauntlets/GauntletArea" to="." method="OnGauntletAreaBodyEntered"]
+[connection signal="area_entered" from="SwordSpear/Sword/Sword Area" to="." method="OnSwordAreaAreaEntered"]
+[connection signal="body_entered" from="SwordSpear/Sword/Sword Area" to="." method="OnSwordAreaBodyEntered"]
+[connection signal="body_entered" from="SwordSpear/Spear/Spear Area" to="." method="OnSpearAreaBodyEntered"]
