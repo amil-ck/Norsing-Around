@@ -21,7 +21,7 @@ public class Bow : Sprite
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if ((string)Player.Get("CurrentWeapon") == "Bow") {
+        if (Player.Get("CurrentWeapon") == this) {
             BowController();
         }
     }

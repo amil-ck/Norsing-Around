@@ -36,6 +36,12 @@ public class Melee_Enemy : KinematicBody2D
         if (!stunned)
         {
             Vector2 Velocity = CalculateVelocity();
+            if (Velocity.x < 0) {
+                GetNode<Sprite>("Sprite").SetFlipH(false);
+            } else if (Velocity.x > 0) {
+                GetNode<Sprite>("Sprite").SetFlipH(true);
+            }
+
             MoveAndSlide(Velocity);
         }
     }

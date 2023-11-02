@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public class SwordSpear : Node2D
 {
@@ -23,7 +24,7 @@ public class SwordSpear : Node2D
     public override void _Input(InputEvent @event) {
         if (Input.IsActionJustPressed("attack"))
         {
-            if ((string)Player.Get("CurrentWeapon") == "Sword") {
+            if (Player.Get("CurrentWeapon") == this) {
                 sword_swing();
             }
         }
@@ -36,7 +37,7 @@ public class SwordSpear : Node2D
 
     public void sword_swing()
     {
-        sword.Position = (GetGlobalMousePosition() - Player.Position).Normalized() * 30;
+        sword.Position = (GetGlobalMousePosition() - Player.Position).Normalized() * 50;
         sword.LookAt(GetGlobalMousePosition());
         sword_anim.Play("Sword Anim");
     }
@@ -72,6 +73,14 @@ public class SwordSpear : Node2D
         }
 
         return (CriteriaMet, Target);
+    }
+
+    public void SwitchInto() {
+    
+    }
+
+    public void SwitchOut() {
+
     }
 
 }
