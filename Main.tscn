@@ -95,7 +95,7 @@ wait_time = 100.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -330, 136 )
+position = Vector2( -294, 136 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 107, -65 )
