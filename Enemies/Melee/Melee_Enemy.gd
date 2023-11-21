@@ -21,9 +21,8 @@ func _ready():
 	connect("ScoreUpdate", HUD, "_score_update")
 	
 func _process(delta):
-	if get_player_distance() > 500:
-		var velocity = calculate_velocity()
-		move_and_slide(velocity)
+	var velocity = calculate_velocity()
+	move_and_slide(velocity)
 	
 func get_to_player():
 	var to_player = (Player.position - position).normalized()
@@ -45,18 +44,29 @@ func knockback():
 	
 func UpdateHealth(change):
 	health += change
-	$AnimationPlayer.play("Anim")
+	$Anim.play("Melee")
 	knockback()
 
 	if health <= 0:
 		emit_signal("ScoreUpdate", 50)
 		queue_free()
+	
+func stun():
+	$Sprite.modulate = Color("f31919")
+	stunned = true
+	
+	VarTim.start(3)
+	yield(VarTim, "timeout")
+	
+	$Sprite.modulate = Color("3af063")
+	stunned = false
+	
 
 func OnCooldownTimeout():
 	$AnimatedSprite.position = get_to_player() * 25
 	$AnimatedSprite.look_at(Player.position)
 	
 	$Anim.play("Melee")
-	
-	
-	
+
+func OnArea2DBodyEntered(body):
+	pass

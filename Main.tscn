@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://HUD.cs" type="Script" id=2]
+[ext_resource path="res://HUD.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/Basic/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Main.cs" type="Script" id=4]
+[ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://Background/tilemap.png" type="Texture" id=5]
 [ext_resource path="res://Enemies/Melee/Melee_Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Pointer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://light.webp" type="Texture" id=8]
 [ext_resource path="res://Player/Fire.png" type="Texture" id=9]
+[ext_resource path="res://crate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Box Goblin.tscn" type="PackedScene" id=11]
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -93,7 +95,7 @@ wait_time = 100.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -384, 537 )
+position = Vector2( -330, 136 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 107, -65 )
@@ -104,4 +106,19 @@ shadow_enabled = true
 
 [node name="Melee_Enemy" parent="." instance=ExtResource( 6 )]
 
-[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
+[node name="Crate" parent="." instance=ExtResource( 10 )]
+position = Vector2( -161, 97 )
+
+[node name="Crate2" parent="." instance=ExtResource( 10 )]
+position = Vector2( -162, 31 )
+
+[node name="Crate3" parent="." instance=ExtResource( 10 )]
+position = Vector2( -160, 162 )
+
+[node name="Crate4" parent="." instance=ExtResource( 10 )]
+position = Vector2( -161, 226 )
+
+[node name="Box Goblin" parent="." instance=ExtResource( 11 )]
+position = Vector2( 407, -86 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

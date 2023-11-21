@@ -31,6 +31,8 @@ onready var CurrentWeapon = SwordSpear
 
 onready var anim = $AnimatedSprite
 
+var inertia = 400
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -41,7 +43,7 @@ func _process(delta):
 	var velocity = Vector2.ZERO
 	
 	if dashing:
-		velocity
+		pass
 	else:
 		velocity = calculate_velocity()
 	
@@ -55,7 +57,14 @@ func _process(delta):
 	elif velocity.x < 0:
 		anim.flip_h = true
 	
-	move_and_slide(velocity)
+	move_and_slide(velocity, Vector2.ZERO, false, 4, PI/4, false)
+	
+	for i in range(0, get_slide_count()):
+		var col = get_slide_collision(i)
+		
+		if col.collider.is_in_group("bodies"):
+			col.collider.apply_central_impulse(-col.normal * inertia)
+			
 
 
 func calculate_velocity():
@@ -79,7 +88,7 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("switch_element"):
 		c_elem += 1
-		c_elem % ELEMENT_COUNT
+		c_elem %= ELEMENT_COUNT
 		CurrentElement = ELEMENTS[c_elem]
 
 func get_direction():
@@ -89,7 +98,7 @@ func get_direction():
 	).normalized()
 	
 	return direction
-
+	
 func dash():
 	var direction = get_direction()
 	var dash_velocity = direction * dash_speed
@@ -113,6 +122,8 @@ func click():
 func OnSwordAreaBodyEntered(body):
 	if body.has_method("UpdateHealth"):
 		body.call("UpdateHealth", -50)
+	elif body.has_method("explode"):
+		body.call("explode")
 	
 func OnSwordAreaAreaEntered(area):
 	var body = area.get_parent()

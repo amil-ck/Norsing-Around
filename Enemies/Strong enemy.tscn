@@ -18,5 +18,6 @@ position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

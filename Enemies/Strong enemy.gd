@@ -6,7 +6,7 @@ func _ready():
 
 
 func _on_Area2D_area_entered(area):
-	var player = area.get_parent() 
+	var player = area.get_parent()
 	if player.has_method("initiate_parry"):
 		player.call("initiate_parry")
 
@@ -14,6 +14,6 @@ func OnSwordAreaBodyEntered(body):
 	if body.has_method("UpdateHealth"):
 		body.call("UpdateHealth")
 
-func OnSwordAreaAreaEntered(area):
-	if area.get_parent().has_method("reflect"):
-		var direction = get_global_mouse_position() - position).normalized()
+#func OnSwordAreaAreaEntered(area):
+#	if area.get_parent().has_method("reflect"):
+#		var direction = get_global_mouse_position() - position).normalized()

@@ -10,9 +10,9 @@
 [ext_resource path="res://spritesheet.png" type="Texture" id=8]
 [ext_resource path="res://hand.png" type="Texture" id=9]
 [ext_resource path="res://Player/Fire.png" type="Texture" id=10]
-[ext_resource path="res://Player/Bow.cs" type="Script" id=11]
-[ext_resource path="res://Player/Gauntlets.cs" type="Script" id=12]
-[ext_resource path="res://Player/SwordSpear.cs" type="Script" id=13]
+[ext_resource path="res://Player/Bow.gd" type="Script" id=11]
+[ext_resource path="res://Player/Gauntlets.gd" type="Script" id=12]
+[ext_resource path="res://Player/SwordSpear.gd" type="Script" id=13]
 [ext_resource path="res://character_momento.png" type="Texture" id=14]
 
 [sub_resource type="GradientTexture" id=39]
@@ -628,7 +628,7 @@ frame = 4
 position = Vector2( -36.5713, 1.33333 )
 scale = Vector2( 0.609522, 0.666667 )
 collision_layer = 4
-collision_mask = 18
+collision_mask = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSpear/Sword/Sword Area"]
 position = Vector2( 73.75, -2.5 )

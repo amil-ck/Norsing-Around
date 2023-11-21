@@ -14,7 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Player.get("CurrentWeapon") == "Bow":
+	if Player.get("CurrentWeapon") == self:
 		bow_controller()
 
 func bow_controller():
@@ -44,6 +44,7 @@ func ice_bow():
 	if Input.is_action_pressed("attack"):
 		if frame == 0:
 			BowAnim.play("Ice Charge")
+			
 	elif Input.is_action_just_released("attack"):
 		BowAnim.play("Reset")
 		var Arrow = ICE_ARROW.instance()

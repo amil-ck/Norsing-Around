@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	move_and_slide(velocity)
 	
 	var node = get_tree().get_nodes_in_group("Lightning Arrow")[0]
