@@ -98,27 +98,19 @@ autostart = true
 position = Vector2( -294, 136 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 107, -65 )
+position = Vector2( 6, 23 )
 texture = ExtResource( 8 )
 texture_scale = 5.0
 color = Color( 0.905882, 0.862745, 0.905882, 1 )
 shadow_enabled = true
 
 [node name="Melee_Enemy" parent="." instance=ExtResource( 6 )]
-
-[node name="Crate" parent="." instance=ExtResource( 10 )]
-position = Vector2( -161, 97 )
-
-[node name="Crate2" parent="." instance=ExtResource( 10 )]
-position = Vector2( -162, 31 )
-
-[node name="Crate3" parent="." instance=ExtResource( 10 )]
-position = Vector2( -160, 162 )
-
-[node name="Crate4" parent="." instance=ExtResource( 10 )]
-position = Vector2( -161, 226 )
+position = Vector2( 149, -229 )
 
 [node name="Box Goblin" parent="." instance=ExtResource( 11 )]
 position = Vector2( 407, -86 )
+
+[node name="Crate" parent="." instance=ExtResource( 10 )]
+position = Vector2( -260, 52 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -6,7 +6,7 @@ export var dash_speed = 5000
 
 var joystick = false
 
-var max_health = 100
+var max_health = 150
 onready var health = max_health
 
 var CurrentElement = "Fire"
@@ -105,6 +105,9 @@ func dash():
 
 func UpdateHealth(change):
 	health += change
+	
+	$"CanvasLayer/Health Bar".health_update(change, health)
+	
 	if health <= 0:
 		pass
 

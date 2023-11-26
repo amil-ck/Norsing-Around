@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/silohuete.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Player/Gauntlets.gd" type="Script" id=12]
 [ext_resource path="res://Player/SwordSpear.gd" type="Script" id=13]
 [ext_resource path="res://character_momento.png" type="Texture" id=14]
+[ext_resource path="res://Health Bar.tscn" type="PackedScene" id=15]
 
 [sub_resource type="GradientTexture" id=39]
 
@@ -675,6 +676,15 @@ shape = SubResource( 9 )
 scale = Vector2( 1.20881, 1.24839 )
 frames = SubResource( 37 )
 frame = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health Bar" parent="CanvasLayer" instance=ExtResource( 15 )]
+margin_left = 59.0
+margin_top = 22.0
+margin_right = 59.0
+margin_bottom = 22.0
+rect_scale = Vector2( 4, 4 )
 
 [connection signal="body_entered" from="Bow/IceField" to="." method="OnIceFieldBodyEntered"]
 [connection signal="body_entered" from="Gauntlets/GauntletArea" to="." method="OnGauntletAreaBodyEntered"]

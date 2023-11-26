@@ -58,7 +58,7 @@ scale = Vector2( 3, 3 )
 shape = SubResource( 1 )
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.1
 autostart = true
 
 [node name="VarTim" type="Timer" parent="."]
