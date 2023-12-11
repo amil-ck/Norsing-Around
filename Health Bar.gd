@@ -5,7 +5,6 @@ var hearts = 3
 var heart_list = []
 var blue_list = []
 
-
 func _ready():
 	for i in range(hearts):
 		heart_list.append(get_node(str(i)))
@@ -17,7 +16,12 @@ func _process(delta):
 			blue_list.pop_front()
 		
 		if blue_list != []:
-			blue_list[0].play("Grey Drain")
+			if blue_list[0].animation == "Drain":
+				var temp = blue_list[0].frame
+				blue_list[0].play("Grey Drain")
+				blue_list[0].frame = temp
+			else:
+				blue_list[0].play("Grey Drain")
 			
 func _input(event):
 	if Input.is_action_just_pressed("special") and blue_list != []:
@@ -35,7 +39,6 @@ func _input(event):
 			heart_list.insert(0, heart)
 		
 		heart_list.insert(0, front)
-			
 
 
 func health_update(change, health):
@@ -46,6 +49,7 @@ func health_update(change, health):
 		for i in range(lost_ratio):
 			var blue = heart_list.pop_front()
 			var temp = blue.frame
-			blue.play("Grey-ed")
+			if temp == 0:
+				blue.play("Grey-ed")
 			blue.frame = temp
 			blue_list.append(blue)
