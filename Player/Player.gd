@@ -6,8 +6,8 @@ export var dash_speed = 5000
 
 var joystick = false
 
-var max_health = 150
-onready var health = max_health
+#var max_health = 150
+#onready var health = max_health
 
 var CurrentElement = "Fire"
 
@@ -106,21 +106,7 @@ func dash():
 	var dash_velocity = direction * dash_speed
 
 func UpdateHealth(change):
-	health += change
-	$"CanvasLayer/Health Bar".health_update(change, health)
-	
-	if health <= 0:
-		$"/root/global_variables".score_scene_type = "game"
-		get_tree().change_scene("res://High Scores.tscn")
-
-#func init_parry():
-#	clicks = 0
-#
-#func click():
-#	clicks += 1
-#
-#	if clicks >= 100:
-#		pass
+	$"CanvasLayer/Health Bar".health_update(change)
 
 ####################################################### Signals ####################################################
 func OnSwordAreaBodyEntered(body):

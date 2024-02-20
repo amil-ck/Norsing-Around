@@ -130,6 +130,7 @@ script = ExtResource( 3 )
 [node name="0" type="AnimatedSprite" parent="."]
 position = Vector2( 9, 0 )
 frames = SubResource( 9 )
+animation = "Drain"
 
 [node name="1" type="AnimatedSprite" parent="."]
 frames = SubResource( 9 )
