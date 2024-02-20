@@ -11,7 +11,6 @@ func _ready():
 
 func _process(delta):
 	if blue_list != []:
-		
 		if blue_list[0].frame == 7:
 			blue_list.pop_front()
 		

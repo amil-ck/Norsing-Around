@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Norsin' Around - C#"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+global_variables="*res://global_variables.gd"
 
 [display]
 

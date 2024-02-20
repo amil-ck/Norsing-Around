@@ -30,13 +30,13 @@ func _process(delta):
 
 func _input(event):
 	if Input.is_action_just_pressed("switch_element"):
-		if icon.texture.load_path == "res://Player/Fire.png":
-			icon.texture = load("res://Player/lightning.png")
-		elif icon.texture.load_path == "res://Player/lightning.png":
-			icon.texure = load("res://Player/ice.png")
-		elif icon.texture.load_path == "res://Player/ice.png":
+		if $"/root/global_variables".element == "Fire":
 			icon.texture = load("res://Player/Fire.png")
+		elif $"/root/global_variables".element == "Ice":
+			icon.texture = load("res://Player/ice.png")
 
 func _score_update(change):
 	score += change
 	$Score.text = str(score)
+	
+	$"/root/global_variables".score = score

@@ -1,23 +1,16 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var direction
-var start_point
-var end_point
 var velocity
 var speed = 2000
-var element
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	direction = (end_point - start_point).normalized()
+func init(start, direction):
+	direction = direction.normalized()
+	
 	velocity = direction * speed
 	
-	position = start_point
-	rotation = get_angle_to(end_point) + PI/2
+	position = start
+	rotation = get_angle_to(start + direction) + PI/2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

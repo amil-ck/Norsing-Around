@@ -22,12 +22,6 @@ margin_right = 277.0
 margin_bottom = 140.0
 text = "Confirm"
 
-[node name="Score" type="TextEdit" parent="Submit Name"]
-margin_left = 194.0
-margin_top = 200.0
-margin_right = 296.0
-margin_bottom = 240.0
-
 [node name="Scores" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -48,3 +42,5 @@ margin_bottom = 285.0
 text = "Play Again"
 
 [connection signal="pressed" from="Submit Name/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Scores/Main Menu" to="." method="_on_Main_Menu_pressed"]
+[connection signal="pressed" from="Scores/Play Again" to="." method="_on_Play_Again_pressed"]

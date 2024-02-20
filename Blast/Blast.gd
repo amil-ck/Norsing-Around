@@ -1,22 +1,15 @@
 extends KinematicBody2D
 
-var start_point = Vector2.ZERO
-var end_point = Vector2.ZERO
-
-
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
 
 var speed = 500
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	direction = (end_point - start_point).normalized()
+func init(start, end):
+	direction = (end - start).normalized()
 	velocity = direction * speed
 	
-	position = start_point
-
+	position = start
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

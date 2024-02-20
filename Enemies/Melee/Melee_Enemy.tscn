@@ -93,7 +93,7 @@ tracks/3/keys = {
 "values": [ false, true ]
 }
 
-[node name="Melee_Enemy" type="KinematicBody2D" groups=["Melee Enemies"]]
+[node name="Melee_Enemy" type="KinematicBody2D" groups=["Melee Enemies", "enemies"]]
 collision_layer = 2
 collision_mask = 11
 script = ExtResource( 1 )
@@ -128,5 +128,10 @@ anims/Melee = SubResource( 8 )
 
 [node name="VarTim" type="Timer" parent="."]
 
+[node name="RandMov" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="body_entered" from="AnimatedSprite/Area2D" to="." method="OnArea2DBodyEntered"]
 [connection signal="timeout" from="Cooldown" to="." method="OnCooldownTimeout"]
+[connection signal="timeout" from="RandMov" to="." method="_on_RandMov_timeout"]

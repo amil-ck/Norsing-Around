@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
@@ -58,7 +58,6 @@ scale = Vector2( 3, 3 )
 shape = SubResource( 1 )
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 0.1
 autostart = true
 
 [node name="VarTim" type="Timer" parent="."]

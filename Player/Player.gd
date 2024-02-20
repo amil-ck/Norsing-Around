@@ -11,8 +11,8 @@ onready var health = max_health
 
 var CurrentElement = "Fire"
 
-var ELEMENTS = ["Fire", "Electricity", "Ice"]
-var ELEMENT_COUNT = 3
+var ELEMENTS = ["Fire", "Ice"]
+var ELEMENT_COUNT = 2
 var c_elem = 0
 
 var p_clicks = 100
@@ -23,7 +23,7 @@ onready var Bow = $Bow
 onready var Gauntlets = $Gauntlets
 onready var SwordSpear = $SwordSpear
 
-onready var WEAPONS = [Bow, Gauntlets, SwordSpear]
+onready var WEAPONS = [SwordSpear, Bow, Gauntlets]
 var WEAPON_COUNT = 3
 var c_weap = 0
 
@@ -32,6 +32,8 @@ onready var CurrentWeapon = SwordSpear
 onready var anim = $AnimatedSprite
 
 var inertia = 400
+
+onready var high_score_screen = load("res://High Scores.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,8 +66,6 @@ func _process(delta):
 		
 		if col.collider.is_in_group("bodies"):
 			col.collider.apply_central_impulse(-col.normal * inertia)
-			
-
 
 func calculate_velocity():
 	var direction = get_direction()
@@ -90,6 +90,8 @@ func _input(event):
 		c_elem += 1
 		c_elem %= ELEMENT_COUNT
 		CurrentElement = ELEMENTS[c_elem]
+		
+		$"/root/global_variables".element = CurrentElement
 
 func get_direction():
 	var direction = Vector2(
@@ -105,21 +107,20 @@ func dash():
 
 func UpdateHealth(change):
 	health += change
-	
 	$"CanvasLayer/Health Bar".health_update(change, health)
 	
 	if health <= 0:
-		pass
+		$"/root/global_variables".score_scene_type = "game"
+		get_tree().change_scene("res://High Scores.tscn")
 
-func init_parry():
-	clicks = 0
-	
-func click():
-	clicks += 1
-	
-	if clicks >= 100:
-		pass
-
+#func init_parry():
+#	clicks = 0
+#
+#func click():
+#	clicks += 1
+#
+#	if clicks >= 100:
+#		pass
 
 ####################################################### Signals ####################################################
 func OnSwordAreaBodyEntered(body):

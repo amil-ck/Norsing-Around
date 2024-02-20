@@ -13,6 +13,8 @@ onready var Player = get_parent().get_node("Player")
 onready var HUD = get_parent().get_node("CanvasLayer/HUD")
 var BLAST = load("res://Blast/Blast.tscn")
 
+var randomness = 50
+
 var stunned = false
 
 signal ScoreUpdate(score)
@@ -35,6 +37,7 @@ func get_player_distance():
 func calculate_velocity():
 	var direction = get_to_player()
 	var velocity = direction * speed
+#	velocity += velocity.tangent().normalized() * randomness
 	return velocity
 
 func knockback():
@@ -69,4 +72,9 @@ func OnCooldownTimeout():
 	$Anim.play("Melee")
 
 func OnArea2DBodyEntered(body):
+	pass
+
+
+func _on_RandMov_timeout():
+#	randomness *= -1
 	pass

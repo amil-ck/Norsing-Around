@@ -2,15 +2,9 @@ extends Sprite
 
 var ARROW = load("res://Player/Arrow/Arrow.tscn")
 var ICE_ARROW = load("res://Player/Arrow/Ice Arrow.tscn")
-var LIGHTNING_ARROW = load("res://Player/Arrow/Lightning Arrow.tscn")
 
 onready var Player = get_parent()
 onready var BowAnim = $"Bow Anim"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,8 +19,6 @@ func bow_controller():
 		ice_bow()
 	elif current_element == "Fire":
 		fire_bow()
-	elif current_element == "Lightning":
-		lightning_bow()
 
 func fire_bow():
 	if Input.is_action_pressed("attack"):
@@ -35,9 +27,7 @@ func fire_bow():
 	elif Input.is_action_just_released("attack"):
 		BowAnim.play("Reset")
 		var Arrow = ARROW.instance()
-		Arrow.set("start_point", global_position)
-		Arrow.set("end_point", get_global_mouse_position())
-		Arrow.set("element", "Fire")
+		Arrow.init(global_position, get_global_mouse_position())
 		get_tree().current_scene.add_child(Arrow)
 
 func ice_bow():
@@ -48,17 +38,7 @@ func ice_bow():
 	elif Input.is_action_just_released("attack"):
 		BowAnim.play("Reset")
 		var Arrow = ICE_ARROW.instance()
-		Arrow.set("start_point", global_position)
-		Arrow.set("end_point", get_global_mouse_position())
-		Arrow.set("element", "Ice")
-		get_tree().current_scene.add_child(Arrow)
-
-func lightning_bow():
-	if Input.is_action_pressed("attack"):
-		BowAnim.play("Reset")
-		var Arrow = LIGHTNING_ARROW.instance()
-		Arrow.set("start_point", global_position)
-		Arrow.set("end_point", get_global_mouse_position())
+		Arrow.init(global_position, get_global_mouse_position() - Player.position)
 		get_tree().current_scene.add_child(Arrow)
 
 func SwitchInto():

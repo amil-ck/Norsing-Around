@@ -52,8 +52,6 @@ func UpdateHealth(change):
 
 func OnCooldownTimeout():
 	var blast = BLAST.instance()
-	blast.set("start_point", position);
-	blast.set("end_point", Player.position);
-	
+	blast.init(position, Player.position)
 	get_parent().add_child(blast)
 	

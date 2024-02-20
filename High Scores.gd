@@ -1,15 +1,17 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var path = "res://scores.json"
+var score
 
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-
+func _ready():
+	if $"/root/global_variables".score_scene_type == "game":
+		score = $"/root/global_variables".score
+		$"/root/global_variables".score = 0
+	elif $"/root/global_variables".score_scene_type == "menu":
+		$"Submit Name".hide()
+		var data = load_scores()
+		display_score(data)
+		$"Scores/Play Again".text = "Play Game"
 
 func load_scores():
 	var file = File.new()
@@ -47,7 +49,7 @@ func write_score(data):
 	file.close()
 
 func display_score(data):
-	$"Submit Name".visible = false
+	$"Submit Name".hide()
 	
 	var y = 10
 	for item in data:
@@ -62,7 +64,14 @@ func display_score(data):
 
 func _on_Button_pressed():
 	var data = load_scores()
-	var new_data = add_score(data, $"Submit Name/Name".text, int($"Submit Name/Score".text))
+	var new_data = add_score(data, $"Submit Name/Name".text, score)
 	print(new_data)
 	display_score(new_data)
-#	write_score(data)
+
+
+func _on_Play_Again_pressed():
+	get_tree().change_scene("res://Main.tscn")
+
+
+func _on_Main_Menu_pressed():
+	get_tree().change_scene("res://Menu.tscn")

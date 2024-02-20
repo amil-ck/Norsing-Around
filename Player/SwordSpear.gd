@@ -4,6 +4,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var ice_attacking = false
 
 onready var player = get_parent()
 onready var collision_shape = player.get_node("CollisionShape2D")
@@ -14,12 +15,23 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if player.CurrentWeapon == self and player.CurrentElement == "Ice":
+		$"Ice Spear".show()
+		
+		if not ice_attacking:
+			$"Ice Spear".position = (get_global_mouse_position() - player.position).normalized() * 60
+			$"Ice Spear".rotation = player.get_angle_to(get_global_mouse_position()) + PI / 2
+		
+	else:
+		$"Ice Spear".hide()
 
 func _input(event):
 	if Input.is_action_just_pressed("attack") and player.CurrentWeapon == self:
-		sword_swing()
+		if player.CurrentElement == "Fire":
+			sword_swing()
+		elif player.CurrentElement == "Ice" and not ice_attacking:
+			ice_stab(get_global_mouse_position())
 	
 	
 	if Input.is_action_just_pressed("special"):
@@ -35,13 +47,38 @@ func special():
 	if criteria_met:
 		collision_shape.disabled = true
 		
-		var tp_position = target.position
 		target.call("UpdateHealth", -100)
-		player.position = tp_position
+		player.position = target.position
 		$"Spear/Spear Anim".play("Spear Anim")
 		
 		collision_shape.disabled = false
 	
+func ice_stab(mouse_pos):
+	$"Ice Spear".rotation = player.get_angle_to(mouse_pos) + PI / 2
+	var original_pos = $"Ice Spear".position
+	var new_position = (mouse_pos - player.position).normalized() * 150
+	ice_attacking = true
+	$"Ice Spear/Ice Spear Area/CollisionShape2D".disabled = false
+	
+	$"Ice Tween".interpolate_property($"Ice Spear", "position", $"Ice Spear".position, $"Ice Spear".position * 0.7, 0.3)
+	$"Ice Tween".start()
+	yield($"Ice Tween", "tween_completed")
+	$"Ice Tween".interpolate_property($"Ice Spear", "position", $"Ice Spear".position, new_position, 0.2)
+	$"Ice Tween".start()
+	yield($"Ice Tween", "tween_completed")
+	$"Ice Tween".interpolate_property($"Ice Spear", "position", $"Ice Spear".position, original_pos, 0.2)
+	$"Ice Tween".start()
+	yield($"Ice Tween", "tween_completed")
+	
+	$"Ice Spear/Ice Spear Area/CollisionShape2D".disabled = true
+	ice_attacking = false
+
+func interp_ice(new_pos, time):
+	$"Ice Tween".interpolate_property($"Ice Spear", "position", $"Ice Spear".position, $"Ice Spear".position * 0.7, 0.3)
+	$"Ice Tween".start()
+	yield($"Ice Tween", "tween_completed")
+
+
 
 func special_check():
 	var criteria_met = false
@@ -65,3 +102,7 @@ func SwitchOut():
 	
 func SwitchInto():
 	pass
+
+func _on_Ice_Spear_Area_body_entered(body):
+	if body.is_in_group("enemies") or body.is_in_group("bodies"):
+		body.call("UpdateHealth", -50)
