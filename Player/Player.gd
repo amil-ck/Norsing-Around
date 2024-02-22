@@ -6,9 +6,6 @@ export var dash_speed = 5000
 
 var joystick = false
 
-#var max_health = 150
-#onready var health = max_health
-
 var CurrentElement = "Fire"
 
 var ELEMENTS = ["Fire", "Ice"]
