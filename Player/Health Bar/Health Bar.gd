@@ -20,7 +20,7 @@ func _process(delta):
 		
 		if glob.health <= 0:
 			$"/root/global_variables".score_scene_type = "game"
-			get_tree().change_scene("res://High Scores.tscn")
+			get_tree().change_scene("res://Main Scenes/High Scores.tscn")
 		
 	heart_controller()
 

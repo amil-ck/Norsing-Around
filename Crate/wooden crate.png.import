@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grey heart.png-9efe7481a36cec6c3c0a2f1a228644c3.stex"
+path="res://.import/wooden crate.png-f256d32ed9572c732587675955d865c8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grey heart.png"
-dest_files=[ "res://.import/grey heart.png-9efe7481a36cec6c3c0a2f1a228644c3.stex" ]
+source_file="res://Crate/wooden crate.png"
+dest_files=[ "res://.import/wooden crate.png-f256d32ed9572c732587675955d865c8.stex" ]
 
 [params]
 

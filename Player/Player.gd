@@ -30,7 +30,7 @@ onready var anim = $AnimatedSprite
 
 var inertia = 400
 
-onready var high_score_screen = load("res://High Scores.tscn")
+onready var high_score_screen = load("res://Main Scenes/High Scores.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -70,8 +70,8 @@ func _on_Button_pressed():
 
 
 func _on_Play_Again_pressed():
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene("res://Main Scenes/Main.tscn")
 
 
 func _on_Main_Menu_pressed():
-	get_tree().change_scene("res://Menu.tscn")
+	get_tree().change_scene("res://Main Scenes/Menu.tscn")

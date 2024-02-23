@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crate piece 3.png-967a31e136299a6f05f8d75950181762.stex"
+path="res://.import/health bar.png-eef81a94cbc44b6391e386748c594c14.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://crate piece 3.png"
-dest_files=[ "res://.import/crate piece 3.png-967a31e136299a6f05f8d75950181762.stex" ]
+source_file="res://Player/Health Bar/health bar.png"
+dest_files=[ "res://.import/health bar.png-eef81a94cbc44b6391e386748c594c14.stex" ]
 
 [params]
 

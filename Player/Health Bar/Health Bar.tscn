@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://health bar.png" type="Texture" id=1]
-[ext_resource path="res://grey heart.png" type="Texture" id=2]
-[ext_resource path="res://Health Bar.gd" type="Script" id=3]
-[ext_resource path="res://grey drain.png" type="Texture" id=4]
+[ext_resource path="res://Player/Health Bar/health bar.png" type="Texture" id=1]
+[ext_resource path="res://Player/Health Bar/grey heart.png" type="Texture" id=2]
+[ext_resource path="res://Player/Health Bar/Health Bar.gd" type="Script" id=3]
+[ext_resource path="res://Player/Health Bar/grey drain.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )

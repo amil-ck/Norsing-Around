@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/health bar.png-08cbbfbb458cadcac1f2f03177b8ea8b.stex"
+path="res://.import/hand.png-8b84b365ad2b5e2f59bca2518ed4005c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://health bar.png"
-dest_files=[ "res://.import/health bar.png-08cbbfbb458cadcac1f2f03177b8ea8b.stex" ]
+source_file="res://Player/Gauntlets/hand.png"
+dest_files=[ "res://.import/hand.png-8b84b365ad2b5e2f59bca2518ed4005c.stex" ]
 
 [params]
 
