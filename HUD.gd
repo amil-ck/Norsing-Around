@@ -2,7 +2,8 @@ extends Control
 
 var score = 0
 onready var pointer = $Pointer
-onready var icon = $element
+onready var icon = get_parent().get_node("Control (element)/element")
+onready var score_label = get_parent().get_node("Control (score)/Score")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,6 +38,6 @@ func _input(event):
 
 func _score_update(change):
 	score += change
-	$Score.text = str(score)
+	score_label.text = str(score)
 	
 	$"/root/global_variables".score = score

@@ -36,7 +36,7 @@ func explode():
 		
 	$Tween.start()
 
-func UpdateHealth(change):
+func update_health(change):
 	health += change
 	
 	if health <= 0:

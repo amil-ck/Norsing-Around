@@ -45,7 +45,7 @@ func knockback():
 	var velocity = direction * KnockbackDistance
 	move_and_slide(velocity)
 	
-func UpdateHealth(change):
+func update_health(change):
 	health += change
 	$Anim.play("Melee")
 	knockback()

@@ -28,8 +28,8 @@ func gauntlet_controller():
 	if Input.is_action_just_pressed("block"):
 		pass
 		
-func SwitchInto():
+func switch_into():
 	show()
 
-func SwitchOut():
+func switch_out():
 	hide()

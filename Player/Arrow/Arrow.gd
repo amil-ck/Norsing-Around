@@ -26,6 +26,6 @@ func _process(delta):
 
 
 func _on_Area2D_body_entered(body):
-	if body.has_method("UpdateHealth"):
-		body.UpdateHealth(-50)
+	if body.has_method("update_health"):
+		body.update_health(-50)
 		queue_free()

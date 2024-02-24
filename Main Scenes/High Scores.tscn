@@ -2,25 +2,8 @@
 
 [ext_resource path="res://Main Scenes/High Scores.gd" type="Script" id=1]
 
-[node name="High Score Screen" type="Node2D"]
+[node name="High Score Screen" type="CanvasLayer"]
 script = ExtResource( 1 )
-
-[node name="Submit Name" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Name" type="TextEdit" parent="Submit Name"]
-margin_left = 136.0
-margin_top = 62.0
-margin_right = 355.0
-margin_bottom = 90.0
-
-[node name="Button" type="Button" parent="Submit Name"]
-margin_left = 213.0
-margin_top = 115.0
-margin_right = 277.0
-margin_bottom = 140.0
-text = "Confirm"
 
 [node name="Scores" type="Control" parent="."]
 visible = false
@@ -41,6 +24,29 @@ margin_right = 288.0
 margin_bottom = 285.0
 text = "Play Again"
 
-[connection signal="pressed" from="Submit Name/Button" to="." method="_on_Button_pressed"]
+[node name="Submit Name" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="Name" type="TextEdit" parent="Submit Name"]
+margin_left = -94.0
+margin_top = -169.0
+margin_right = 125.0
+margin_bottom = -141.0
+
+[node name="Button" type="Button" parent="Submit Name"]
+margin_left = -15.0
+margin_top = -116.0
+margin_right = 49.0
+margin_bottom = -91.0
+text = "Confirm"
+
 [connection signal="pressed" from="Scores/Main Menu" to="." method="_on_Main_Menu_pressed"]
 [connection signal="pressed" from="Scores/Play Again" to="." method="_on_Play_Again_pressed"]
+[connection signal="pressed" from="Submit Name/Button" to="." method="_on_Button_pressed"]

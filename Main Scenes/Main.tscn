@@ -80,20 +80,33 @@ anchor_right = 1.0
 margin_bottom = 56.0
 script = ExtResource( 2 )
 
-[node name="Score" type="Label" parent="CanvasLayer/HUD"]
-margin_left = 524.0
-margin_top = 8.0
-margin_right = 564.0
-margin_bottom = 22.0
-text = "0"
-
 [node name="Pointer" parent="CanvasLayer/HUD" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 457, 216 )
 
-[node name="element" type="Sprite" parent="CanvasLayer/HUD"]
-position = Vector2( 451, 412 )
+[node name="Control (element)" type="Control" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+
+[node name="element" type="Sprite" parent="CanvasLayer/Control (element)"]
+position = Vector2( -15, -15 )
 texture = ExtResource( 9 )
+
+[node name="Control (score)" type="Control" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+
+[node name="Score" type="Label" parent="CanvasLayer/Control (score)"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "0"
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

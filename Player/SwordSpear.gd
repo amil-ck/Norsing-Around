@@ -47,7 +47,7 @@ func special():
 	if criteria_met:
 		collision_shape.disabled = true
 		
-		target.call("UpdateHealth", -100)
+		target.call("update_health", -100)
 		player.position = target.position
 		$"Spear/Spear Anim".play("Spear Anim")
 		
@@ -97,12 +97,12 @@ func sword_swing():
 	$Sword.look_at(get_global_mouse_position())
 	$"Sword/Sword Anim".play("Sword Anim")
 
-func SwitchOut():
+func switch_out():
 	pass
 	
-func SwitchInto():
+func switch_into():
 	pass
 
 func _on_Ice_Spear_Area_body_entered(body):
 	if body.is_in_group("enemies") or body.is_in_group("bodies"):
-		body.call("UpdateHealth", -50)
+		body.call("update_health", -50)

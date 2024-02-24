@@ -7,7 +7,7 @@ onready var Player = get_parent()
 onready var BowAnim = $"Bow Anim"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Player.get("CurrentWeapon") == self:
 		bow_controller()
 
@@ -41,9 +41,9 @@ func ice_bow():
 		Arrow.init(global_position, get_global_mouse_position() - Player.position)
 		get_tree().current_scene.add_child(Arrow)
 
-func SwitchInto():
+func switch_into():
 	show()
 
-func SwitchOut():
+func switch_out():
 	hide()
 

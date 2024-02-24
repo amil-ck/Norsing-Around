@@ -75,13 +75,13 @@ func _input(event):
 		pass
 	
 	if Input.is_action_just_pressed("switch"):
-		CurrentWeapon.call("SwitchOut")
+		CurrentWeapon.call("switch_out")
 		
 		c_weap += 1
 		c_weap %= WEAPON_COUNT
 		CurrentWeapon = WEAPONS[c_weap]
 		
-		CurrentWeapon.call("SwitchInto")
+		CurrentWeapon.call("switch_into")
 	
 	if Input.is_action_just_pressed("switch_element"):
 		c_elem += 1
@@ -102,13 +102,13 @@ func dash():
 	var direction = get_direction()
 	var dash_velocity = direction * dash_speed
 
-func UpdateHealth(change):
+func update_health(change):
 	$"CanvasLayer/Health Bar".health_update(change)
 
 ####################################################### Signals ####################################################
 func OnSwordAreaBodyEntered(body):
-	if body.has_method("UpdateHealth"):
-		body.call("UpdateHealth", -50)
+	if body.has_method("update_health"):
+		body.call("update_health", -50)
 	elif body.has_method("explode"):
 		body.call("explode")
 	
@@ -122,13 +122,13 @@ func OnSwordAreaAreaEntered(area):
 		body.get_parent().call("stun")
 
 func OnSpearAreaBodyEntered(body):
-	if body.has_method("UpdateHealth"):
-		body.call("UpdateHealth", -100)
+	if body.has_method("update_health"):
+		body.call("update_health", -100)
 	
 
 func OnGauntletAreaBodyEntered(body):
-	if body.has_method("UpdateHealth"):
-		body.call("UpdateHealth", -50)
+	if body.has_method("update_health"):
+		body.call("update_health", -50)
 
 func OnIceFieldBodyEntered(body):
 	pass

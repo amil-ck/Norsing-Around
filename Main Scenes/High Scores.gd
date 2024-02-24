@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 var path = "res://scores.json"
 var score
