@@ -16,4 +16,4 @@ func OnSwordAreaBodyEntered(body):
 
 #func OnSwordAreaAreaEntered(area):
 #	if area.get_parent().has_method("reflect"):
-#		var direction = get_global_mouse_position() - position).normalized()
+#		var direction = glob.get_input_direction() - position).normalized()

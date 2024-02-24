@@ -5,11 +5,12 @@ extends KinematicBody2D
 #	pass
 var speed = 100
 var max_health = 1000
-var KnockbackDistance = 2000
+var knockback_distance = 2000
 
 var health = max_health
 onready var VarTim = $VarTim
-onready var Player = get_parent().get_node("Player")
+onready var glob = get_node("/root/global_variables")
+onready var Player = glob.player
 onready var HUD = get_parent().get_node("CanvasLayer/HUD")
 var BLAST = load("res://Blast/Blast.tscn")
 
@@ -38,7 +39,7 @@ func calculate_velocity():
 
 func knockback():
 	var direction = -1 * get_to_player()
-	var velocity = direction * KnockbackDistance
+	var velocity = direction * knockback_distance
 	move_and_slide(velocity)
 	
 func update_health(change):

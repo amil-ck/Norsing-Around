@@ -5,6 +5,7 @@ var ICE_ARROW = load("res://Player/Arrow/Ice Arrow.tscn")
 
 onready var Player = get_parent()
 onready var BowAnim = $"Bow Anim"
+onready var glob = get_node("/root/global_variables")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -12,8 +13,8 @@ func _process(_delta):
 		bow_controller()
 
 func bow_controller():
-	position = (get_global_mouse_position() - Player.position).normalized() * 100
-	rotation = Player.get_angle_to(get_global_mouse_position()) + PI / 2
+	position = (glob.get_input_direction() - Player.position).normalized() * 100
+	rotation = Player.get_angle_to(glob.get_input_direction()) + PI / 2
 	var current_element = Player.get("CurrentElement")
 	if current_element == "Ice":
 		ice_bow()
@@ -27,7 +28,7 @@ func fire_bow():
 	elif Input.is_action_just_released("attack"):
 		BowAnim.play("Reset")
 		var Arrow = ARROW.instance()
-		Arrow.init(global_position, get_global_mouse_position())
+		Arrow.init(global_position, glob.get_input_direction())
 		get_tree().current_scene.add_child(Arrow)
 
 func ice_bow():
@@ -38,7 +39,7 @@ func ice_bow():
 	elif Input.is_action_just_released("attack"):
 		BowAnim.play("Reset")
 		var Arrow = ICE_ARROW.instance()
-		Arrow.init(global_position, get_global_mouse_position() - Player.position)
+		Arrow.init(global_position, glob.get_input_direction() - Player.position)
 		get_tree().current_scene.add_child(Arrow)
 
 func switch_into():

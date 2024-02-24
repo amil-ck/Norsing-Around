@@ -1,18 +1,14 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var ice_attacking = false
 
 onready var player = get_parent()
 onready var collision_shape = player.get_node("CollisionShape2D")
+onready var glob = get_node("/root/global_variables")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -20,8 +16,8 @@ func _process(delta):
 		$"Ice Spear".show()
 		
 		if not ice_attacking:
-			$"Ice Spear".position = (get_global_mouse_position() - player.position).normalized() * 60
-			$"Ice Spear".rotation = player.get_angle_to(get_global_mouse_position()) + PI / 2
+			$"Ice Spear".position = (glob.get_input_direction() - player.position).normalized() * 60
+			$"Ice Spear".rotation = player.get_angle_to(glob.get_input_direction()) + PI / 2
 		
 	else:
 		$"Ice Spear".hide()
@@ -31,7 +27,7 @@ func _input(event):
 		if player.CurrentElement == "Fire":
 			sword_swing()
 		elif player.CurrentElement == "Ice" and not ice_attacking:
-			ice_stab(get_global_mouse_position())
+			ice_stab(glob.get_input_direction())
 	
 	
 	if Input.is_action_just_pressed("special"):
@@ -93,8 +89,8 @@ func special_check():
 	
 	
 func sword_swing():
-	$Sword.position = (get_global_mouse_position() - player.position).normalized() * 50
-	$Sword.look_at(get_global_mouse_position())
+	$Sword.position = (glob.get_input_direction() - player.position).normalized() * 50
+	$Sword.look_at(glob.get_input_direction())
 	$"Sword/Sword Anim".play("Sword Anim")
 
 func switch_out():

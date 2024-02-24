@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+onready var glob = get_node("/root/global_variables")
+
 export var speed = 400
 export var dashing = false
 export var dash_speed = 5000
@@ -34,7 +36,7 @@ onready var high_score_screen = load("res://Main Scenes/High Scores.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	glob.player = self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -116,7 +118,7 @@ func OnSwordAreaAreaEntered(area):
 	var body = area.get_parent()
 	
 	if body.has_method("reflect"):
-		var direction = (get_global_mouse_position() - global_position).normalized()
+		var direction = (glob.get_input_direction() - global_position).normalized()
 		body.call("reflect", direction)
 	elif body.get_parent().has_method("stun"):
 		body.get_parent().call("stun")

@@ -6,7 +6,7 @@ var per_heart = 7
 var heart_list = []
 
 var health_loss = 0
-onready var glob = $"/root/global_variables"
+onready var glob = get_node("/root/global_variables")
 
 func _ready():
 	for i in range(hearts):

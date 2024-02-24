@@ -2,6 +2,7 @@ extends Node2D
 
 onready var player = get_parent()
 var ICE_WALL = load("res://Ice Wall.tscn")
+onready var glob = get_node("/root/global_variables")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -9,8 +10,8 @@ func _process(delta):
 		gauntlet_controller()
 
 func gauntlet_controller():
-	position = (get_global_mouse_position() - player.position).normalized() * 50
-	rotation = player.get_angle_to(get_global_mouse_position()) + PI/2
+	position = (glob.get_input_direction() - player.position).normalized() * 50
+	rotation = player.get_angle_to(glob.get_input_direction()) + PI/2
 	
 	if Input.is_action_just_pressed("attack"):
 		if player.CurrentElement == "Fire":
@@ -20,10 +21,10 @@ func gauntlet_controller():
 		
 	if Input.is_action_just_pressed("special") and player.CurrentElement == "Ice":
 		var ice_wall = ICE_WALL.instance()
-		var wall_pos = player.position + (get_global_mouse_position() - player.position).normalized() * -100
+		var wall_pos = player.position + (glob.get_input_direction() - player.position).normalized() * -100
 		ice_wall.global_position = wall_pos
 		get_tree().current_scene.add_child(ice_wall)
-		ice_wall.rotation = ice_wall.get_angle_to(get_global_mouse_position()) + PI/2
+		ice_wall.rotation = ice_wall.get_angle_to(glob.get_input_direction()) + PI/2
 		
 	if Input.is_action_just_pressed("block"):
 		pass
