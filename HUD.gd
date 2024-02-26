@@ -9,7 +9,6 @@ onready var score_label = get_parent().get_node("Control (score)/Score")
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var middle = get_viewport().size / 2

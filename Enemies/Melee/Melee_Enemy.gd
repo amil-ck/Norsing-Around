@@ -4,7 +4,7 @@ extends KinematicBody2D
 #func _process(delta):
 #	pass
 var speed = 100
-var max_health = 1000
+var max_health = 100
 var KnockbackDistance = 2000
 
 var health = max_health
@@ -72,7 +72,8 @@ func OnCooldownTimeout():
 	$Anim.play("Melee")
 
 func OnArea2DBodyEntered(body):
-	pass
+	if body.has_method("update_health"):
+		body.update_health(-50)
 
 
 func _on_RandMov_timeout():

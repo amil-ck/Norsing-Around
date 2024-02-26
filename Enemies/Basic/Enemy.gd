@@ -4,7 +4,7 @@ extends KinematicBody2D
 #func _process(delta):
 #	pass
 var speed = 100
-var max_health = 1000
+var max_health = 100
 var knockback_distance = 2000
 
 var health = max_health

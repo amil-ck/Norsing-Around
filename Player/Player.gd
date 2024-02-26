@@ -91,7 +91,7 @@ func _input(event):
 		CurrentElement = ELEMENTS[c_elem]
 		
 		$"/root/global_variables".element = CurrentElement
-
+		
 func get_direction():
 	var direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),

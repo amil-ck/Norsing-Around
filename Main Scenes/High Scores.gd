@@ -51,11 +51,11 @@ func write_score(data):
 func display_score(data):
 	$"Submit Name".hide()
 	
-	var y = 10
+	var y = -200
 	for item in data:
 		var new_text = Label.new()
 		new_text.text = item["name"] + "       " + str(int(item["score"]))
-		new_text.set_global_position(Vector2(0, y))
+		new_text.set_global_position(Vector2(-30, y))
 		$Scores.add_child(new_text)
 		
 		y += 20
@@ -67,7 +67,7 @@ func _on_Button_pressed():
 	var new_data = add_score(data, $"Submit Name/Name".text, score)
 	print(new_data)
 	display_score(new_data)
-
+	
 
 func _on_Play_Again_pressed():
 	get_tree().change_scene("res://Main Scenes/Main.tscn")
