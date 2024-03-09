@@ -9,13 +9,13 @@ onready var glob = get_node("/root/global_variables")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Player.get("CurrentWeapon") == self:
+	if Player.current_weapon == self:
 		bow_controller()
 
 func bow_controller():
 	position = (glob.get_input_direction() - Player.position).normalized() * 100
 	rotation = Player.get_angle_to(glob.get_input_direction()) + PI / 2
-	var current_element = Player.get("CurrentElement")
+	var current_element = Player.get("current_element")
 	if current_element == "Ice":
 		ice_bow()
 	elif current_element == "Fire":
@@ -28,8 +28,8 @@ func fire_bow():
 	elif Input.is_action_just_released("attack"):
 		BowAnim.play("Reset")
 		var Arrow = ARROW.instance()
-		Arrow.init(global_position, glob.get_input_direction())
 		get_tree().current_scene.add_child(Arrow)
+		Arrow.init(global_position, glob.get_input_direction())
 
 func ice_bow():
 	if Input.is_action_pressed("attack"):
@@ -39,8 +39,8 @@ func ice_bow():
 	elif Input.is_action_just_released("attack"):
 		BowAnim.play("Reset")
 		var Arrow = ICE_ARROW.instance()
-		Arrow.init(global_position, glob.get_input_direction() - Player.position)
 		get_tree().current_scene.add_child(Arrow)
+		Arrow.init(global_position, glob.get_input_direction() - Player.position)
 
 func switch_into():
 	show()

@@ -6,7 +6,7 @@ onready var glob = get_node("/root/global_variables")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player.CurrentWeapon == self:
+	if player.current_weapon == self:
 		gauntlet_controller()
 
 func gauntlet_controller():
@@ -14,12 +14,12 @@ func gauntlet_controller():
 	rotation = player.get_angle_to(glob.get_input_direction()) + PI/2
 	
 	if Input.is_action_just_pressed("attack"):
-		if player.CurrentElement == "Fire":
+		if player.current_element == "Fire":
 			$AnimationPlayer.play("Fire Attack")
-		elif player.CurrentElement == "Ice":
+		elif player.current_element == "Ice":
 			$AnimationPlayer.play("Ice Attack")
 		
-	if Input.is_action_just_pressed("special") and player.CurrentElement == "Ice":
+	if Input.is_action_just_pressed("special") and player.current_element == "Ice":
 		var ice_wall = ICE_WALL.instance()
 		var wall_pos = player.position + (glob.get_input_direction() - player.position).normalized() * -100
 		ice_wall.global_position = wall_pos

@@ -8,7 +8,7 @@ export var dash_speed = 5000
 
 var joystick = false
 
-var CurrentElement = "Fire"
+var current_element = "Fire"
 
 var ELEMENTS = ["Fire", "Ice"]
 var ELEMENT_COUNT = 2
@@ -26,7 +26,7 @@ onready var WEAPONS = [SwordSpear, Bow, Gauntlets]
 var WEAPON_COUNT = 3
 var c_weap = 0
 
-onready var CurrentWeapon = SwordSpear
+onready var current_weapon = SwordSpear
 
 onready var anim = $AnimatedSprite
 
@@ -37,7 +37,7 @@ onready var high_score_screen = load("res://Main Scenes/High Scores.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	glob.player = self
-
+	glob.health = 150
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,20 +77,14 @@ func _input(event):
 		pass
 	
 	if Input.is_action_just_pressed("switch"):
-		CurrentWeapon.call("switch_out")
-		
-		c_weap += 1
-		c_weap %= WEAPON_COUNT
-		CurrentWeapon = WEAPONS[c_weap]
-		
-		CurrentWeapon.call("switch_into")
+		switch()
 	
 	if Input.is_action_just_pressed("switch_element"):
 		c_elem += 1
 		c_elem %= ELEMENT_COUNT
-		CurrentElement = ELEMENTS[c_elem]
+		current_element = ELEMENTS[c_elem]
 		
-		$"/root/global_variables".element = CurrentElement
+		$"/root/global_variables".element = current_element
 		
 func get_direction():
 	var direction = Vector2(
@@ -106,6 +100,18 @@ func dash():
 
 func update_health(change):
 	$"CanvasLayer/Health Bar".health_update(change)
+
+func stop_loss():
+	$"CanvasLayer/Health Bar".stop_loss()
+
+func switch():
+		current_weapon.call("switch_out")
+		
+		c_weap += 1
+		c_weap %= WEAPON_COUNT
+		current_weapon = WEAPONS[c_weap]
+		
+		current_weapon.call("switch_into")
 
 ####################################################### Signals ####################################################
 func OnSwordAreaBodyEntered(body):

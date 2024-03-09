@@ -12,7 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player.CurrentWeapon == self and player.CurrentElement == "Ice":
+	if player.current_weapon == self and player.current_element == "Ice":
 		$"Ice Spear".show()
 		
 		if not ice_attacking:
@@ -23,10 +23,10 @@ func _process(delta):
 		$"Ice Spear".hide()
 
 func _input(event):
-	if Input.is_action_just_pressed("attack") and player.CurrentWeapon == self:
-		if player.CurrentElement == "Fire":
+	if Input.is_action_just_pressed("attack") and player.current_weapon == self:
+		if player.current_element == "Fire":
 			sword_swing()
-		elif player.CurrentElement == "Ice" and not ice_attacking:
+		elif player.current_element == "Ice" and not ice_attacking:
 			ice_stab(glob.get_input_direction())
 	
 	

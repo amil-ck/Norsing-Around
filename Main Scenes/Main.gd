@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 var ENEMY = load("res://Enemies/Basic/Enemy.tscn")
 var MELEE_ENEMY = load("res://Enemies/Melee/Melee_Enemy.tscn")
 
@@ -16,4 +14,7 @@ func spawn_enemy():
 	var enemy = ENEMIES[0]
 	
 	var enemy_instance = enemy.instance()
+	enemy_instance.global_position = Vector2(rand_range(-1000, 1000),
+											rand_range(-1000, 1000))
+	
 	add_child(enemy_instance)

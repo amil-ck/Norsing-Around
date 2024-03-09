@@ -22,6 +22,7 @@ global_variables="*res://Main Scenes/global_variables.gd"
 
 window/size/width=500
 window/size/height=500
+window/size/fullscreen=true
 window/size/test_width=1000
 window/size/test_height=1000
 window/dpi/allow_hidpi=true

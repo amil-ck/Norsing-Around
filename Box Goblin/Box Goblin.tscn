@@ -32,10 +32,15 @@ frames = SubResource( 3 )
 speed_scale = 2.0
 playing = true
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 0 )
 shape = SubResource( 4 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="SwitchTim" type="Timer" parent="."]
+
+[node name="BoxTim" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="SwitchTim" to="." method="_on_SwitchTim_timeout"]
+[connection signal="timeout" from="BoxTim" to="." method="_on_BoxTim_timeout"]

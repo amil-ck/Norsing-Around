@@ -49,6 +49,7 @@ func update_health(change):
 	health += change
 	$Anim.play("Melee")
 	knockback()
+	Player.stop_loss()
 
 	if health <= 0:
 		emit_signal("ScoreUpdate", 50)

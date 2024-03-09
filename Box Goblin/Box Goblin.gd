@@ -1,17 +1,13 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var direction = Vector2.ZERO
 var speed = 10000
 
+var BOX = load("res://Crate/crate.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	change_direction()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,12 +21,14 @@ func change_direction():
 	elif direction.x < 0:
 		$AnimatedSprite.flip_h = false
 	
+	$SwitchTim.start()
 	
-	$Timer.start()
-
-
-
-func _on_Timer_timeout():
+func _on_SwitchTim_timeout():
 	change_direction()
-	
-	$Timer.wait_time = rand_range(0, 5)
+	$SwitchTim.wait_time = rand_range(0, 5)
+
+func _on_BoxTim_timeout():
+	var box = BOX.instance()
+	box.global_position = global_position + Vector2(rand_range(-100, 100),
+													rand_range(-100, 100))
+	get_tree().current_scene.add_child(box)
