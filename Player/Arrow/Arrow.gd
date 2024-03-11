@@ -6,11 +6,11 @@ var speed = 2000
 onready var FIRE = load("res://Player/Arrow/Fire.tscn")
 
 # Called when the node enters the scene tree for the first time.
-func init(start, end):
+func init(start, direction):
 	position = start
-	rotation = get_angle_to(end) + (PI/2)
+	rotation = get_angle_to(start + direction) + (PI/2)
 	
-	var direction = (end - start).normalized()
+	direction = direction.normalized()
 	velocity = direction * speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

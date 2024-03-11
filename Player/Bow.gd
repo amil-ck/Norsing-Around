@@ -29,7 +29,7 @@ func fire_bow():
 		BowAnim.play("Reset")
 		var Arrow = ARROW.instance()
 		get_tree().current_scene.add_child(Arrow)
-		Arrow.init(global_position, glob.get_input_direction())
+		Arrow.init(global_position, glob.get_input_direction() - Player.position)
 
 func ice_bow():
 	if Input.is_action_pressed("attack"):
