@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var path = "res://scores.json"
+var path = "user://scores.tres"
 var score
 
 func _ready():
@@ -28,17 +28,20 @@ func load_scores():
 	return data
 
 func add_score(data, name, score):
-	if len(data) == 10 and data[9]["score"] < score:
-		data.pop(9)
-	
-	if len(data) < 10:
-		for i in range(len(data)):
-			var item = data[i]
-			if item["score"] < score:
-				data.insert(i, parse_json('{"name" : "' + name + '", "score" : ' + str(score) + '}'))
-				return data
+	if len(data) == 0:
+		data = parse_json('[{"name" : "' + name + '", "score" : ' + str(score) + '}]')
+	else:
+		if len(data) == 10 and data[9]["score"] < score:
+			data.pop(9)
 		
-		data.append(parse_json('{"name" : "' + name + '", "score" : ' + str(score) + '}'))
+		if len(data) < 10:
+			for i in range(len(data)):
+				var item = data[i]
+				if item["score"] < score:
+					data.insert(i, parse_json('{"name" : "' + name + '", "score" : ' + str(score) + '}'))
+					return data
+			
+			data.append(parse_json('{"name" : "' + name + '", "score" : ' + str(score) + '}'))
 	
 	return data
 
@@ -67,6 +70,7 @@ func _on_Button_pressed():
 	var new_data = add_score(data, $"Submit Name/Name".text, score)
 	print(new_data)
 	display_score(new_data)
+	write_score(new_data)
 	
 
 func _on_Play_Again_pressed():
